@@ -1,0 +1,12 @@
+# Executáveis gerados pela compilação
+sistema_bancario
+sistema_bancario_desafio
+*.exe
+*.out
+*.o
+
+# Arquivos de IDE/editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
