@@ -83,3 +83,63 @@ g++ -std=c++17 -Wall -o sistema_bancario_desafio sistema_bancario_desafio_5conta
 
 No Windows (MinGW), basta trocar `./sistema_bancario` por
 `sistema_bancario.exe`.
+
+---
+
+# Etapa 2 — Múltiplas contas e histórico de movimentações
+
+Arquivo: `sistema_bancario_etapa2.cpp`
+
+Nesta etapa o sistema passa a gerenciar **até 100 contas** usando arrays
+paralelos e é organizado em **funções**. Também guarda um **histórico de
+movimentações** (até 500 registros) em arrays separados.
+
+## Estruturas de dados
+
+| Array | Tipo | Finalidade |
+|---|---|---|
+| `numeroConta[MAX_CONTAS]` | `int` | Número da conta |
+| `nomeCliente[MAX_CONTAS]` | `string` | Nome do titular |
+| `cpf[MAX_CONTAS]` | `string` | CPF do titular |
+| `tipoConta[MAX_CONTAS]` | `int` | 1 = Corrente; 2 = Poupança |
+| `saldo[MAX_CONTAS]` | `double` | Saldo atual |
+| `contaAtiva[MAX_CONTAS]` | `bool` | Indica se a conta está ativa |
+| `contaMovimentacao[MAX_MOVIMENTACOES]` | `int` | Conta da movimentação |
+| `tipoMovimentacao[MAX_MOVIMENTACOES]` | `char` | `'D'` = Depósito; `'S'` = Saque |
+| `valorMovimentacao[MAX_MOVIMENTACOES]` | `double` | Valor movimentado |
+
+## Menu
+
+```
+===== SISTEMA BANCARIO =====
+1 - Cadastrar conta
+2 - Listar contas
+3 - Consultar conta
+4 - Depositar
+5 - Sacar
+6 - Transferir
+7 - Extrato
+0 - Sair
+```
+
+## Funções
+
+`cadastrarConta()`, `listarContas()`, `consultarConta()`, `depositar()`,
+`sacar()`, `transferir()`, `exibirExtrato()`, além das auxiliares
+`buscarConta()`, `registrarMovimentacao()`, `lerInteiro()` e `lerReal()`.
+
+## Regras e validações
+
+- Não permite número de conta repetido nem limite de 100 contas excedido.
+- Depósito, saque e transferência exigem conta existente e ativa e valor positivo.
+- Saque e transferência não são realizados com saldo insuficiente.
+- A transferência debita a origem, credita o destino e gera **dois registros**
+  no histórico: `'S'` na conta de origem e `'D'` na conta de destino.
+- O extrato mostra apenas as movimentações da conta informada e o saldo atual.
+
+## Como compilar e executar
+
+```bash
+g++ -std=c++17 -Wall -o sistema_bancario_etapa2 sistema_bancario_etapa2.cpp
+./sistema_bancario_etapa2
+```
